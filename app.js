@@ -1,14 +1,17 @@
 import express from "express";
-import productsRouter from "./routes/products.router.js";
-import cartsRouter from "./routes/carts.router.js";
+import productsRouter from "./src/routes/products.router.js";
+import cartsRouter from "./src/routes/carts.router.js";
 
+const PORT = 8080;
 const app = express();
-const puerto = 8080;
 
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/products/", productsRouter);
 app.use("/api/carts/", cartsRouter);
 
-app.listen(puerto, () => {
-    console.log("Servidor conectado en el puerto: " + puerto);
+app.listen(PORT, () => {
+  console.log(`Servidor conectado al puerto: http://localhost:${PORT}`);
 });
